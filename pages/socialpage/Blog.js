@@ -25,13 +25,7 @@ import { like_abi, like_address } from "../contracts/likeContract";
 //import { mint_abi, mint_address } from "../contracts/mintContract";
 import { mint_abi, mint_address } from "../contracts/mintContract";
 
-<<<<<<< HEAD
-let Web3 = require("web3");
-=======
-let w3 = new Web3(window.ethereum);
-let like_contract = new w3.eth.Contract(like_abi, like_address)
-let mint_contract = new w3.eth.Contract(mint_abi, mint_address)
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
+// let Web3 = require("web3");
 
 async function mintClick(_index, _likeCtr, account, _mintCtr, _caption, _image){
 
@@ -87,7 +81,6 @@ function likeClick(_index, account) {
 
   let encoded = like_contract.methods.getLike(_index).encodeABI();
 
-<<<<<<< HEAD
   let tx = {
     from: account,
     to: like_address,
@@ -97,10 +90,6 @@ function likeClick(_index, account) {
   let txHash = ethereum
     .request({
       method: "eth_sendTransaction",
-=======
-  let txHash =global.window.ethereum.request({
-      method: 'eth_sendTransaction',
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
       params: [tx],
     })
     .then((hash) => {
@@ -117,7 +106,6 @@ function dislikeClick(_index, account) {
 
   let encoded = like_contract.methods.dislike(_index).encodeABI();
 
-<<<<<<< HEAD
   let tx = {
     from: account,
     to: like_address,
@@ -127,10 +115,6 @@ function dislikeClick(_index, account) {
   let txHash = ethereum
     .request({
       method: "eth_sendTransaction",
-=======
-  let txHash =global.window.ethereum.request({
-      method: 'eth_sendTransaction',
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
       params: [tx],
     })
     .then((hash) => {
@@ -154,7 +138,6 @@ const Blog = ({
   const [likeAmount, setLikeAmount] = useState(0);
   const [MintAmount, setMintAmount] = useState(0);
   const [isOnClick, setIsOnClick] = useState(state);
-<<<<<<< HEAD
   const [isMint, setIsMint] = useState(mintState);
   const [address, setAddress] = useState(null);
 
@@ -168,23 +151,6 @@ const Blog = ({
           .catch((err) => console.log(err))
       : console.log("Please install MetaMask");
   }, []);
-=======
-  const [isMint, setIsMint] = useState(false);
-  const [address, setAddress] = useState(null)
-
-  useEffect( async() => {
-    
-   global.window.ethereum ?
-   global.window.ethereum.request({ method: "eth_requestAccounts" }).then(async(accounts) => {
-        
-        console.log(accounts[0])
-        setAddress(accounts[0])
-
-      }).catch((err) => console.log(err))
-    : console.log("Please install MetaMask")
-
-  }, [])
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
 
   function clickHeart() {
     likeClick(id, address);

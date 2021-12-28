@@ -22,22 +22,14 @@ import {
   StyledPlusIcon,
 } from "./PostStyles";
 
-<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
-=======
-import React, {useState, useEffect} from 'react';
-import Web3 from "web3";
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
 
 import { c_abi, c_address } from "../contracts/feedsContract";
 
 let abi = c_abi; // Paste your ABI here
 let contractAddress = c_address;
 
-<<<<<<< HEAD
 let Web3 = require("web3");
-=======
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
 
 const convertToBuffer = async (reader) => {
   return Buffer.from(reader);
@@ -118,7 +110,6 @@ function mint(address, contract, imgHash, textHash, typeHash) {
     .encodeABI();
 
   let tx = {
-<<<<<<< HEAD
     from: address,
     to: contractAddress,
     data: encoded,
@@ -127,15 +118,6 @@ function mint(address, contract, imgHash, textHash, typeHash) {
   let txHash = ethereum
     .request({
       method: "eth_sendTransaction",
-=======
-      from: address,
-      to : contractAddress,
-      data : encoded,
-  }
-
-  let txHash =global.window.ethereum.request({
-      method: 'eth_sendTransaction',
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
       params: [tx],
     })
     .then((hash) => {
@@ -161,7 +143,6 @@ const Post = () => {
   // let contractAddress = c_address
 
   useEffect(() => {
-<<<<<<< HEAD
     window.ethereum
       ? ethereum
           .request({ method: "eth_requestAccounts" })
@@ -185,26 +166,6 @@ const Post = () => {
           .catch((err) => console.log(err))
       : console.log("Please install MetaMask");
   }, []);
-=======
-   global.window.ethereum ?
-   global.window.ethereum.request({ method: "eth_requestAccounts" }).then((accounts) => {
-        setAddress(accounts[0])
-        let w3 = new Web3(window.ethereum)
-        setWeb3(w3)
-      
-        let c = new w3.eth.Contract(abi, contractAddress)
-        setContract(c)
-      
-        c.methods.getCounter().call().then((_supply) => {
-          // Optionally set it to the state to render it using React
-          setTotalSupply(_supply)
-        }).catch((err) => console.log(err))
-      }).catch((err) => console.log(err))
-    : console.log("Please install MetaMask")
-    
-    
-  }, [])
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
 
   function captionChange(e) {
     setCaption(e.target.value);

@@ -6,23 +6,15 @@ import React, { useState, useEffect } from "react";
 
 import { c_abi, c_address } from "../contracts/feedsContract";
 import { like_abi, like_address } from "../contracts/likeContract";
-<<<<<<< HEAD
 import { getHashes } from "crypto";
 import { mint_abi, mint_address } from "../contracts/mintContract";
 import add from "ipfs-http-client/src/files-regular/add";
 import minify from "babel-plugin-styled-components/lib/visitors/minify";
-=======
-import Web3 from "web3";
-
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
 
 let abi = c_abi; // Paste your ABI here
 let contractAddress = c_address;
 
-<<<<<<< HEAD
 let Web3 = require("web3");
-=======
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
 
 let account;
 
@@ -146,27 +138,12 @@ const Feed = (address) => {
   //   : console.log("Please install MetaMask")
   // })
 
-<<<<<<< HEAD
   useEffect(async () => {
     window.ethereum
       ? ethereum
           .request({ method: "eth_requestAccounts" })
           .then(async (accounts) => {
             account = accounts[0];
-=======
-  
-  useEffect( async() => {
-    
-   global.window.ethereum ?
-   global.window.ethereum.request({ method: "eth_requestAccounts" }).then(async(accounts) => {
-        
-        console.log(accounts[0])
-        account = accounts[0]
-
-        let ps = await getPosts(account)
-        console.log("ps", ps)
-        setPosts(ps)
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
 
             let ps = await getPosts(account);
             console.log("ps", ps);
@@ -184,34 +161,17 @@ const Feed = (address) => {
       .call({ from: account });
   };
 
-<<<<<<< HEAD
   const getMintAmount = async (account, _index) => {
     let w3 = new Web3(ethereum);
     let mint_contract = new w3.eth.Contract(mint_abi, mint_address);
     return await mint_contract.methods.getMint(_index).call({ from: account });
   };
-=======
-  const getLIkeAmount = async(account, _index) => {
-    let w3 = new Web3(window.ethereum)
-    let like_contract = new w3.eth.Contract(like_abi, like_address)
-    console.log(account)
-    let test =  await like_contract.methods.searchLikeAmount(_index).call({from: account})
-    console.log(test)
-    return test
-  }
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
 
   const getPosts = async (address) => {
     // loading = false;
-<<<<<<< HEAD
     let w3 = new Web3(ethereum);
     let contract = new w3.eth.Contract(abi, contractAddress);
 
-=======
-    let w3 = new Web3(window.ethereum)
-    let contract = new w3.eth.Contract(abi, contractAddress)
-  
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
     const posts = [];
     const counter = await contract.methods.getCounter().call({
       from: address,
@@ -253,19 +213,12 @@ const Feed = (address) => {
       const postFileType = await Promise.all(types);
 
       for (let i = 0; i < postHashes.length; i += 1) {
-<<<<<<< HEAD
         const likeInfo = await getLIkeAmount(address, i);
         const mintInfo = await getMintAmount(address, i);
         console.log(mintInfo);
         const res = await fetch(`https://ipfs.io/ipfs/${postHashes[i].img}`);
         const b64img = await res.text();
         console.log(b64img);
-=======
-      const likeInfo = await getLIkeAmount(address, i)
-      const res = await fetch(`https://cloudflare-ipfs.com/ipfs/${postHashes[i].img}`)
-      const b64img = await res.text()
-  console.log(b64img)
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
         posts.push({
           id: i,
           key: `key${i}`,
@@ -286,7 +239,6 @@ const Feed = (address) => {
     return posts;
   };
 
-<<<<<<< HEAD
   return posts
     .slice(0)
     .reverse()
@@ -320,21 +272,6 @@ const Feed = (address) => {
         </StyledFeed>
       );
     });
-=======
-
-  return posts.map((post) => {
-    const { id, src, caption, fileType, likeCtr, state } = post;
-    return (
-      <StyledFeed  key={id}
-        initial={{ opacity: 0, y: 60 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-      >
-        <Blog id={id} src={src} caption={caption} fileType={fileType} likeCtr={likeCtr} state={state} />
-      </StyledFeed>
-    );
-  });
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
 };
 
 export default Feed;

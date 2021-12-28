@@ -2,14 +2,7 @@ import Head from "next/head";
 import Feed from "./socialpage/Feed";
 import Post from "./socialpage/Post";
 
-<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
-=======
-import React, {useState, useEffect} from 'react';
-
-import { c_abi, c_address } from "./contracts/feedsContract"
-import Web3 from "web3";
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
 
 import { c_abi, c_address } from "./contracts/feedsContract";
 let Web3 = require("web3");
@@ -26,7 +19,6 @@ const Social = () => {
   let contractAddress = c_address;
 
   useEffect(() => {
-<<<<<<< HEAD
     window.ethereum
       ? ethereum
           .request({ method: "eth_requestAccounts" })
@@ -50,13 +42,6 @@ const Social = () => {
           .catch((err) => console.log(err))
       : console.log("Please install MetaMask");
   }, []);
-=======
-    global.window.ethereum ?
-    global.window.ethereum.request({ method: "eth_requestAccounts" }).then((accounts) => {
-        setAddress(accounts[0])
-        let w3 = new Web3(global.window.ethereum)
-        setWeb3(w3)
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
 
   // function mint(){
   //   let _price = web3.utils.toWei("200000000", "Gwei");
