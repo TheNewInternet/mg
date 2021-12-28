@@ -70,11 +70,7 @@ export default (req: NextApiRequest, res: NextApiResponse): Promise<any> => {
     const { account, caption, image } = req.body;
     console.log(account, caption, image)
     // TODO: validations
-<<<<<<< HEAD
     // const image = "https://cloudflare-ipfs.com/ipfs/QmRFZbxe2jiqGYrL1dXGoT2b9gd4csybxSUAKY6mnSTCDc"
-=======
-    const image = "https://ipfs.io/ipfs/QmRFZbxe2jiqGYrL1dXGoT2b9gd4csybxSUAKY6mnSTCDc"
->>>>>>> b8557969d22c33efb6cf735b19444131d630816c
     const j = 
                 {
                 name: `A metagram NFT owned by ${account}.`,
